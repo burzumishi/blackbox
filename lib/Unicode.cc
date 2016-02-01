@@ -158,6 +158,10 @@ namespace bt {
 } // namespace bt
 
 bool bt::hasUnicode() {
+#ifdef __CYGWIN__
+  return false;
+#endif
+
   static bool has_unicode = true;
   static bool done = false;
 
