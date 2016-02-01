@@ -33,7 +33,7 @@
 #include <X11/Xutil.h>
 #include <X11/cursorfont.h>
 
-#include <strings.h>
+#include <cstring>
 
 
 BlackboxResource::BlackboxResource(const std::string& rc): rc_file(rc) {

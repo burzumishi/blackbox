@@ -281,6 +281,7 @@ void Blackbox::process_event(XEvent *e) {
     bool lost_focus = true; // did the window really lose focus?
     bool no_focus = true;   // did another window get focus?
 
+    XSync(XDisplay(), False);
     XEvent event;
     if (XCheckIfEvent(XDisplay(), &event, scanForFocusIn, NULL)) {
       process_event(&event);
@@ -420,7 +421,7 @@ Blackbox::Blackbox(char **m_argv, const char *dpy_name,
   }
 
   if (managed == 0) {
-    fprintf(stderr, "%s: no managable screens found, exiting...\n",
+    fprintf(stderr, "%s: no manageable screens found, exiting...\n",
             applicationName().c_str());
     ::exit(3);
   }

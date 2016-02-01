@@ -11,10 +11,10 @@ test "x$prefix" = "xNONE" && prefix="$ac_default_prefix"
 dnl Look in the most logical places for external libraries
 CPPFLAGS="$CPPFLAGS -I$prefix/include"
 LDFLAGS="$LDFLAGS -L$prefix/lib"
-if test "x$prefix" != "x/usr/local"; then
-  CPPFLAGS="$CPPFLAGS -I/usr/local/include"
-  LDFLAGS="$LDFLAGS -L/usr/local/lib"
-fi
+#if test "x$prefix" != "x/usr/local"; then
+#  CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+#  LDFLAGS="$LDFLAGS -L/usr/local/lib"
+#fi
 
 dnl Locate required external software
 AC_PROG_CC
@@ -30,7 +30,6 @@ AC_PROG_INSTALL
 
 dnl libbt shouldn't be shared by default (yet)
 AC_DISABLE_SHARED
-
 AC_PROG_LIBTOOL
 AC_SUBST(LIBTOOL_DEPS)
 
@@ -83,7 +82,7 @@ AC_SUBST(ICONV)
 
 dnl check if we are using GNU libiconv
 AC_MSG_CHECKING([for GNU libiconv])
-AC_COMPILE_IFELSE([
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([
 #include <sys/types.h>
 #include <iconv.h>
 
@@ -95,7 +94,7 @@ int main(int, char **) {
     iconv(cd, &inp, &inbytes, &outp, &outbytes);
     return 0;
 }
-],
+])],
  		  [AC_DEFINE([HAVE_GNU_LIBICONV], [1],
                              [Define to 1 when using GNU libiconv])
 		   AC_MSG_RESULT([yes])],
@@ -113,7 +112,7 @@ AC_CHECK_FUNCS([setlocale],
 AC_SUBST(LOCALE)
 
 AC_MSG_CHECKING([for nl_langinfo])
-AC_COMPILE_IFELSE([
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([
 #include <langinfo.h>
 
 int main(int, char **)
@@ -122,7 +121,7 @@ int main(int, char **)
     x = nl_langinfo(CODESET);
     return 0;
 }
-],
+])],
                   [AC_DEFINE([HAVE_NL_LANGINFO], [1],
                              [Define to 1 if you system has nl_langinfo(3)])
                    AC_MSG_RESULT([yes])],

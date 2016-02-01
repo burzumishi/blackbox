@@ -2949,10 +2949,10 @@ test "x$prefix" = "xNONE" && prefix="$ac_default_prefix"
 
 CPPFLAGS="$CPPFLAGS -I$prefix/include"
 LDFLAGS="$LDFLAGS -L$prefix/lib"
-if test "x$prefix" != "x/usr/local"; then
-  CPPFLAGS="$CPPFLAGS -I/usr/local/include"
-  LDFLAGS="$LDFLAGS -L/usr/local/lib"
-fi
+#if test "x$prefix" != "x/usr/local"; then
+#  CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+#  LDFLAGS="$LDFLAGS -L/usr/local/lib"
+#fi
 
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -4693,7 +4693,6 @@ if test "${enable_shared+set}" = set; then :
 else
   enable_shared=no
 fi
-
 
 
 

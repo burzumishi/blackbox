@@ -209,7 +209,6 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 xft_CFLAGS = @xft_CFLAGS@
 xft_LIBS = @xft_LIBS@
-ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 SUBDIRS = data \
 			  doc \

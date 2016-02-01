@@ -109,9 +109,7 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
-CPPFLAGS = @CPPFLAGS@ @DEBUG@ @NLS@ \
-			  -I$(top_srcdir)/lib
-
+CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -232,6 +230,9 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 xft_CFLAGS = @xft_CFLAGS@
 xft_LIBS = @xft_LIBS@
+AM_CPPFLAGS = @CPPFLAGS@ @DEBUG@ @NLS@ \
+			  -I$(top_srcdir)/lib
+
 bin_SCRIPTS = bsetbg
 bsetroot_SOURCES = bsetroot.cc
 bsetroot_DEPENDENCIES = $(top_builddir)/lib/libbt.la
@@ -253,9 +254,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__confi
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  util/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  util/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  util/Makefile
+	  $(AUTOMAKE) --gnu  util/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \

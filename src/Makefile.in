@@ -109,12 +109,7 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
-CPPFLAGS = @CPPFLAGS@ @SHAPE@ @XFT@ @DEBUG@ @NLS@ \
-			  -DLOCALEPATH=\"$(pkgdatadir)/nls\" \
-			  -DDEFAULTMENU=\"$(DEFAULT_MENU)\" \
-			  -DDEFAULTSTYLE=\"$(DEFAULT_STYLE)\" \
-			  -I$(top_srcdir)/lib
-
+CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -237,6 +232,12 @@ xft_CFLAGS = @xft_CFLAGS@
 xft_LIBS = @xft_LIBS@
 DEFAULT_MENU = $(pkgdatadir)/menu
 DEFAULT_STYLE = $(pkgdatadir)/styles/Gray
+AM_CPPFLAGS = @CPPFLAGS@ @SHAPE@ @XFT@ @DEBUG@ @NLS@ \
+			  -DLOCALEPATH=\"$(pkgdatadir)/nls\" \
+			  -DDEFAULTMENU=\"$(DEFAULT_MENU)\" \
+			  -DDEFAULTSTYLE=\"$(DEFAULT_STYLE)\" \
+			  -I$(top_srcdir)/lib
+
 blackbox_SOURCES = BlackboxResource.cc                           \
                           Clientmenu.cc					\
 			  Configmenu.cc					\
@@ -273,9 +274,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__confi
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  src/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  src/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  src/Makefile
+	  $(AUTOMAKE) --gnu  src/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \

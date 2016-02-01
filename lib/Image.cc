@@ -29,7 +29,6 @@
 
 #include <algorithm>
 #include <vector>
-#include <cstring>
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -45,6 +44,8 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <cstring>
 
 // #define COLORTABLE_DEBUG
 // #define MITSHM_DEBUG
@@ -1286,7 +1287,6 @@ void bt::Image::dgradient(const Color &from, const Color &to,
 
 void bt::Image::hgradient(const Color &from, const Color &to,
                           bool interlaced) {
-  using namespace std;
   double drx, dgx, dbx,
     xr = static_cast<double>(from.red()),
     xg = static_cast<double>(from.green()),

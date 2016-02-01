@@ -63,7 +63,7 @@ CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
-CPPFLAGS =  -I/usr/include -I/usr/local/include
+CPPFLAGS =  -I/usr/include
 CXX = g++
 CXXCPP = g++ -E
 CXXDEPMODE = depmode=gcc3
@@ -88,7 +88,7 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = ${SHELL} $(install_sh) -c -s
 LD = /usr/i686-pc-cygwin/bin/ld.exe
-LDFLAGS =  -L/usr/lib -L/usr/local/lib
+LDFLAGS =  -L/usr/lib
 LIBOBJS = 
 LIBS =  -lXext -lX11 -lXft
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -209,9 +209,9 @@ $(srcdir)/Makefile.in: # $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  doc/nl_NL/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  doc/nl_NL/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  doc/nl_NL/Makefile
+	  $(AUTOMAKE) --gnu  doc/nl_NL/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \

@@ -32,7 +32,8 @@
 #include <Resource.hh>
 
 #include <assert.h>
-#include <strings.h>
+
+#include <cstring>
 
 
 static const int iconify_width  = 9;

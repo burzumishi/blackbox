@@ -29,7 +29,8 @@
 #include <X11/Xresource.h>
 
 #include <stdio.h>
-#include <string.h>
+
+#include <cstring>
 
 
 bt::Resource::Resource(void)
