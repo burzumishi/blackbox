@@ -65,11 +65,6 @@ dnl Checks for libraries.
 AC_FUNC_MALLOC
 AM_WITH_DMALLOC
 
-AC_CHECK_PROGS([regex_cmd], [sed])
-if test "x$regex_cmd" = "x"; then
-  AC_MSG_ERROR([error. sed is required to build the default menu file.])
-fi
-
 AC_CHECK_PROGS([gencat_cmd], [gencat])
 if test "x$gencat_cmd" = "x"; then
   NLS=
@@ -362,6 +357,19 @@ util/bsetbg
 po/Makefile.in
 ])
 AC_OUTPUT
+
+
+dnl Check gettext --from-code support
+if echo foo | xgettext --from-code=UTF-8 -LC -o - - 2>/dev/null; then
+:;
+else
+echo "Warning: Your version of gettext does not support --from-code."
+echo "         This will cause translation of some strings in non US-English"
+echo "         locales to fail. For full support please upgrade to GNU"
+echo "         gettext 0.12 or later."
+echo ""
+fi
+
 
 dnl Print results
 AC_MSG_RESULT([])

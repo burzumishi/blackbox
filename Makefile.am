@@ -2,7 +2,8 @@
 
 AUTOMAKE_OPTIONS	= foreign
 
-SUBDIRS			= data \
+SUBDIRS			= \
+        data \
 			  doc \
 			  lib \
 			  src \

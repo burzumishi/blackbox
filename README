@@ -1,6 +1,6 @@
 -- README for Blackbox - an X11 Window manager
 
-This is the README for Blackbox 0.62.x release.
+This is the README for Blackbox 0.70.x release.
 
 The source tree for Blackbox is comprised of five subdirectories:
 
@@ -11,6 +11,9 @@ The source tree for Blackbox is comprised of five subdirectories:
 	                  the various aspects of Blackbox
 
 	nls/		- this holds the message files used to generate
+			  message catalogs for different languages
+
+	po/		- this holds the message files used to generate
 			  message catalogs for different languages
 
 	src/		- this holds the actual C++ source code for the window
