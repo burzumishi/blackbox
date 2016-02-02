@@ -6,13 +6,19 @@ SUBDIRS			= data \
 			  doc \
 			  lib \
 			  src \
-			  util
+			  util \
+			  po
 
 MAINTAINERCLEANFILES	= Makefile.in \
+			  data/Makefile.in \
+			  src/Makefile.in \
+			  po/Makefile.in \
+			  lib/Makefile.in \
 			  aclocal.m4 \
 			  config.h.in \
 			  config.guess \
 			  config.sub \
+			  config.rpath \
 			  configure \
 			  configure.lineno \
 			  depcomp \
@@ -30,4 +36,4 @@ uninstall-local:
 
 distclean-local:
 	rm -f *\~ gmon.out .\#*
-	rm -rf autom4te.cache
+	rm -rf autom4te.cache m4 aclocal.m4

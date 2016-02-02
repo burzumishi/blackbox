@@ -1,9 +1,22 @@
 dnl configure.in for Blackbox - an X11 Window manager
 dnl Initialize autoconf and automake
 
-AC_INIT([blackbox], [0.70.1], [http://blackboxwm.sourceforge.net])
-AM_INIT_AUTOMAKE([blackbox], [0.70.1])
-AC_CONFIG_SRCDIR([src/blackbox.cc])
+AC_PREREQ([2.69])
+AC_INIT([blackbox], [0.70.2], [http://blackboxwm.sourceforge.net])
+
+AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 dist-xz tar-ustar -Wno-portability])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+AC_CONFIG_MACRO_DIR([m4])
+
+AC_CONFIG_SRCDIR([src/blackbox.cpp])
+AC_CONFIG_HEADERS([lib/config.h])
+
+AM_MAINTAINER_MODE([disable])
+
+AM_SANITY_CHECK
+
+AC_CANONICAL_HOST
+AC_CANONICAL_BUILD
 
 dnl Determine default prefix
 test "x$prefix" = "xNONE" && prefix="$ac_default_prefix"
@@ -27,11 +40,30 @@ fi
 
 AC_PROG_CXX
 AC_PROG_INSTALL
+AC_PROG_LEX
+AC_PROG_AWK
+AC_PROG_GREP
+AC_PROG_SED
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
 
-dnl libbt shouldn't be shared by default (yet)
+dnl libbbox shouldn't be shared by default (yet)
 AC_DISABLE_SHARED
-AC_PROG_LIBTOOL
+
+
+dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
+AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
+
+dnl Require Libtool
+LT_PREREQ([2.4])
+LT_INIT
+LT_LANG([C])
+
 AC_SUBST(LIBTOOL_DEPS)
+
+dnl Checks for libraries.
+AC_FUNC_MALLOC
+AM_WITH_DMALLOC
 
 AC_CHECK_PROGS([regex_cmd], [sed])
 if test "x$regex_cmd" = "x"; then
@@ -67,13 +99,13 @@ dnl Check if some required functions live in the C library, or in an
 dnl external library
 
 ICONV=
-AC_CHECK_FUNCS([iconv_open],
+AC_CHECK_FUNCS([iconv_close],
                [],
                [AC_CHECK_LIB([iconv],
-                             [iconv_open],
+                             [iconv_close],
                              [ICONV="-liconv"],
                              [AC_CHECK_LIB([iconv],
-					   [libiconv_open],
+					   [libiconv_close],
 					   [ICONV="-liconv"],
 					   [AC_MSG_ERROR([Blackbox requires iconv(3) support.])])
 			     ])
@@ -127,6 +159,18 @@ int main(int, char **)
                    AC_MSG_RESULT([yes])],
                   [AC_MSG_RESULT([no])]
                  )
+
+dnl Language Support
+IT_PROG_INTLTOOL([0.50.1])
+
+dnl Check for gettext
+GETTEXT_PACKAGE=blackbox
+AM_GNU_GETTEXT([external])
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [The gettext translation domain])
+AC_SUBST(GETTEXT_PACKAGE)
+
+dnl Dependency Checks
+PKG_PROG_PKG_CONFIG()
 
 dnl needed for some X11 libs
 AC_CHECK_LIB([nsl],
@@ -300,7 +344,6 @@ dnl Determine if maintainer portions of the Makefiles should be included.
 AM_MAINTAINER_MODE
 
 dnl Output files
-AM_CONFIG_HEADER(config.h)
 AC_CONFIG_FILES([
 version.h
 Makefile
@@ -312,9 +355,11 @@ doc/ja_JP/Makefile
 doc/nl_NL/Makefile
 doc/sl_SI/Makefile
 lib/Makefile
-lib/libbt.pc
+lib/libbbox.pc
 src/Makefile
 util/Makefile
+util/bsetbg
+po/Makefile.in
 ])
 AC_OUTPUT
 

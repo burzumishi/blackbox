@@ -27,13 +27,13 @@ AM_CPPFLAGS		= @CPPFLAGS@ @DEBUG@ @NLS@ \
 bin_SCRIPTS		= bsetbg
 bin_PROGRAMS		= bsetroot bstyleconvert
 
-bsetroot_SOURCES	= bsetroot.cc
-bsetroot_DEPENDENCIES	= $(top_builddir)/lib/libbt.la
-bsetroot_LDADD		= $(top_builddir)/lib/libbt.la
+bsetroot_SOURCES	= bsetroot.cpp
+bsetroot_DEPENDENCIES	= $(top_builddir)/lib/libbbox.la
+bsetroot_LDADD		= $(top_builddir)/lib/libbbox.la
 
-bstyleconvert_SOURCES		= bstyleconvert.cc
-bstyleconvert_DEPENDENCIES	= $(top_builddir)/lib/libbt.la
-bstyleconvert_LDADD		= $(top_builddir)/lib/libbt.la
+bstyleconvert_SOURCES		= bstyleconvert.cpp
+bstyleconvert_DEPENDENCIES	= $(top_builddir)/lib/libbbox.la
+bstyleconvert_LDADD		= $(top_builddir)/lib/libbbox.la
 
 MAINTAINERCLEANFILES	= Makefile.in
 

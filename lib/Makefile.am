@@ -22,50 +22,59 @@
 # DEALINGS IN THE SOFTWARE.
 
 AM_CPPFLAGS = 		@SHAPE@ @MITSHM@ @XFT@ @DEBUG@ @NLS@ \
-			-DLOCALEPATH=\"$(pkgdatadir)/nls\"
-lib_LTLIBRARIES = 	libbt.la
-libbt_la_SOURCES = 	Application.cc					\
-			Bitmap.cc					\
-			Color.cc					\
-			Display.cc					\
-			EWMH.cc						\
-			Font.cc						\
-			Image.cc					\
-			Menu.cc						\
-			Pen.cc						\
-			PixmapCache.cc					\
-			Rect.cc						\
-			Resource.cc					\
-			Texture.cc					\
-			Timer.cc					\
-			Unicode.cc					\
-			Util.cc						\
-			XDG.cc
+			-DLOCALEPATH=\"$(pkgdatadir)/nls\" \
+			-DLOCALEDIR=\"$(pkgdatadir)/locales\"
 
-libbtdir = $(includedir)/bt
-libbt_HEADERS = 	Application.hh					\
-			Bitmap.hh					\
-			Color.hh					\
-			Display.hh					\
-			EWMH.hh						\
-			EventHandler.hh					\
-			Font.hh						\
-			Image.hh					\
-			Menu.hh						\
-			Pen.hh						\
-			PixmapCache.hh					\
-			Rect.hh						\
-			Resource.hh					\
-			Texture.hh					\
-			Timer.hh					\
-			Unicode.hh					\
-			Util.hh						\
-			XDG.hh
+lib_LTLIBRARIES = 	libbbox.la
 
-libbt_la_LIBADD =	@ICONV@ @LOCALE@
+libbbox_la_SOURCES = 	i18n.cpp					\
+			Application.cpp					\
+			Bitmap.cpp					\
+			Color.cpp					\
+			Display.cpp					\
+			EWMH.cpp					\
+			Font.cpp					\
+			Image.cpp					\
+			Menu.cpp					\
+			Pen.cpp						\
+			PixmapCache.cpp					\
+			Rect.cpp					\
+			Resource.cpp					\
+			Texture.cpp					\
+			Timer.cpp					\
+			Unicode.cpp					\
+			Util.cpp					\
+			XDG.cpp
+
+libbboxdir = $(includedir)/blackbox
+
+libbbox_HEADERS = 	config.h					\
+			i18n.h						\
+			Application.h					\
+			Bitmap.h					\
+			Color.h						\
+			Display.h					\
+			EWMH.h						\
+			EventHandler.h					\
+			Font.h						\
+			Image.h						\
+			Menu.h						\
+			Pen.h						\
+			PixmapCache.h					\
+			Rect.h						\
+			Resource.h					\
+			Texture.h					\
+			Timer.h						\
+			Unicode.h					\
+			Util.h						\
+			XDG.h
+
+libbbox_la_LIBADD =	@ICONV@ @LOCALE@
 
 pkgconfigdir = 		$(libdir)/pkgconfig
-nodist_pkgconfig_DATA =	libbt.pc
 
-DISTCLEANFILES = 	*\~ *.orig *.rej .\#* *.il *.pchi
+nodist_pkgconfig_DATA =	libbbox.pc
+
+DISTCLEANFILES = 	*\~ *.orig *.rej .\#* *.il *.pch
+
 MAINTAINERCLEANFILES = 	Makefile.in

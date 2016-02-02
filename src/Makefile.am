@@ -21,34 +21,66 @@
 # DEALINGS IN THE SOFTWARE.
 
 DEFAULT_MENU		= $(pkgdatadir)/menu
-DEFAULT_STYLE		= $(pkgdatadir)/styles/Gray
+
+DEFAULT_STYLE		= $(pkgdatadir)/styles/Blue
+
 AM_CPPFLAGS		= @CPPFLAGS@ @SHAPE@ @XFT@ @DEBUG@ @NLS@ \
 			  -DLOCALEPATH=\"$(pkgdatadir)/nls\" \
+			  -DLOCALEDIR=\"$(pkgdatadir)/locales\" \
 			  -DDEFAULTMENU=\"$(DEFAULT_MENU)\" \
 			  -DDEFAULTSTYLE=\"$(DEFAULT_STYLE)\" \
 			  -I$(top_srcdir)/lib
+
 bin_PROGRAMS		= blackbox
-blackbox_SOURCES	= BlackboxResource.cc                           \
-                          Clientmenu.cc					\
-			  Configmenu.cc					\
-			  Iconmenu.cc					\
-			  Rootmenu.cc					\
-			  Screen.cc					\
-			  ScreenResource.cc				\
-			  Slit.cc					\
-			  Slitmenu.cc					\
-			  StackingList.cc				\
-			  Toolbar.cc					\
-			  Toolbarmenu.cc				\
-			  Window.cc					\
-			  WindowGroup.cc				\
-			  Windowmenu.cc					\
-			  Workspace.cc					\
-			  Workspacemenu.cc				\
-			  blackbox.cc					\
-			  main.cc
-blackbox_DEPENDENCIES	= $(top_builddir)/lib/libbt.la
-blackbox_LDADD		= $(top_builddir)/lib/libbt.la
+
+blackbox_SOURCES	= \
+			  BlackboxResource.cpp                          \
+                          Clientmenu.cpp				\
+			  Configmenu.cpp				\
+			  Iconmenu.cpp					\
+			  Rootmenu.cpp					\
+			  Screen.cpp					\
+			  ScreenResource.cpp				\
+			  Slit.cpp					\
+			  Slitmenu.cpp					\
+			  StackingList.cpp				\
+			  Toolbar.cpp					\
+			  Toolbarmenu.cpp				\
+			  Window.cpp					\
+			  WindowGroup.cpp				\
+			  Windowmenu.cpp				\
+			  Workspace.cpp					\
+			  Workspacemenu.cpp				\
+			  blackbox.cpp					\
+			  main.cpp
+
+blackboxdir		= $(includedir)/blackbox
+
+blackbox_HEADERS	= \
+			  blackbox.h					\
+			  BlackboxResource.h				\
+			  Clientmenu.h					\
+			  Configmenu.h					\
+			  Iconmenu.h					\
+			  Rootmenu.h					\
+			  Screen.h					\
+			  ScreenResource.h				\
+			  Slit.h					\
+			  Slitmenu.h					\
+			  StackingList.h				\
+			  Toolbar.h					\
+			  Toolbarmenu.h					\
+			  Window.h					\
+			  WindowGroup.h					\
+			  Windowmenu.h					\
+			  Workspace.h					\
+			  Workspacemenu.h
+
+blackbox_DEPENDENCIES	= $(top_builddir)/lib/libbbox.la
+
+blackbox_LDADD		= $(top_builddir)/lib/libbbox.la
+
+DISTCLEANFILES		= stamp-h1
 
 MAINTAINERCLEANFILES	= Makefile.in
 
